@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cafe Fav UGM</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+	
+	<!-- memanggil bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+	
+	<script src="./bundle.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="./Leaflet.GraphicScale.min.css">
+	
+	<script src="./Leaflet.GraphicScale.min.js"></script>
+
+	
+	<style>
+	#map {
+		height: calc(100vh - 58px);
+	}
+	</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Cafe Favorit Mahasiswa UGM</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Lokasi <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tujuan</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Gender</a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      Create by: Ali, Dita, Naomi
+    </span>
+  </div>
+</nav>
+
+ 	<!-- container peta -->
+	<div id="map"></div>
+	
+	<!-- script peta -->
+	
+    <script>
+	var map = L.map('map',{
+        center: [-7.770262, 110.377872],
+        zoom: 14
+        });
+		
+	var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+	
+	var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+	});
+	
+	var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+	});
+
+	
+	var a = L.marker([-7.7558, 110.37662]).bindPopup('<div><a>Roti Bakar 543</a>' + '</div><div >Rating: 4.5</div>'),
+		b = L.marker([-7.76637, 110.38125]).bindPopup('<div><a>Signatura Coffee</a>' +
+    '</div><div >Rating: 5</div>'),
+		c = L.marker([-7.75675, 110.3723]).bindPopup('<div><a>Spasso</a>' +
+    '</div><div >Rating: 4.5</div>'),
+		d = L.marker([-7.78701, 110.37525]).bindPopup('<div><a>Legend Coffee</a>' +
+    '</div><div >Rating: 4</div>');
+		e = L.marker([-7.7570336, 110.3830635]).bindPopup('<div><a>Upnormal Coffee Roaster</a>' +
+    '</div><div >Rating: 4.6</div>');
+		f = L.marker([-7.760172, 110.363842]).bindPopup('<div><a>Couvee</a>' +
+    '</div><div >Rating: 4</div>');
+		g = L.marker([-7.7278461, 110.3841636]).bindPopup( '<div><a>Harmoni</a>' +
+    '</div><div >Rating: 4</div>');
+		h = L.marker([-7.758476, 110.379343]).bindPopup('<div><a>Starbucks</a>' +
+    '</div><div >Rating: 4.5</div>');
+		i = L.marker([-7.7577636, 110.3794339]).bindPopup( '<div><a>Nox COffee</a>' +
+    '</div><div >Rating: 4</div>');
+		j = L.marker([-7.77571233, 110.341829]).bindPopup('<div><a>Blackbone</a>' +
+    '</div><div >Rating: 3</div>');
+		k = L.marker([-7.760891, 110.3857886]).bindPopup( '<div><a>Filosofi Kopi</a>' +
+    '</div><div >Rating: 4.5</div>');
+		l = L.marker([-7.7845674, 110.372128]).bindPopup('<div><a>Silol Coffee</a>' +
+    '</div><div >Rating: 4</div>');
+		m = L.marker([-7.7642493, 110.3831838]).bindPopup('<div><a>Antologi Co-Working Space</a>' +
+    '</div><div >Rating: 4</div>');
+		n = L.marker([-7.76008, 110.38089]).bindPopup('<div><a>Luxury Internet Cafe</a>' +
+    '</div><div >Rating: 5</div>');
+		o = L.marker([-7.7746, 110.40086]).bindPopup('<div><a>Estuary</a>' +
+    '</div><div >Rating: 5</div>');
+		p = L.marker([-7.7745811, 110.3988265]).bindPopup('<div><a>Warung Ngopi Bjong</a>' +
+    '</div><div >Rating: 4</div>');
+		q = L.marker([-7.75572, 110.38352]).bindPopup('<div><a>Angkringan Enaknan</a>' +
+    '</div><div >Rating: 4</div>');
+		r = L.marker([-7.77602914, 110.33445338]).bindPopup('<div><a>Hoka Hoka Bento</a>' +
+    '</div><div >Rating: 4</div>');
+		s = L.marker([-7.7625252, 110.37747]).bindPopup('<div><a>McDonalds</a>' +
+    '</div><div >Rating: 4</div>');
+		t = L.marker([-7.7602928, 110.3795736]).bindPopup('<div><a>Seven Stones</a>' +
+    '</div><div >Rating: 4.3</div>');
+		u = L.marker([-7.7602885, 110.3445338]).bindPopup('<div><a>Platinum</a>' +
+    '</div><div >Rating: 4</div>');
+		v = L.marker([-7.7604968, 110.3786268]).bindPopup( '<div><a>Warung Tubruk</a>' +
+    '</div><div >Rating: 3</div>');
+		w = L.marker([-7.7769872, 110.3717483]).bindPopup('<div><a>Ruang Kerja</a>' +
+    '</div><div >Rating: 4</div>');
+		x = L.marker([-7.7303614, 110.3614938]).bindPopup('<div><a>Habitat</a>' +
+    '</div><div >Rating: 4</div>');
+		y = L.marker([-7.7528567, 110.3596066]).bindPopup('<div><a>KFC</a>' +
+    '</div><div >Rating: 4</div>');
+		z = L.marker([-7.7528553, 110.3267755]).bindPopup('<div><a>Calais</a>' +
+    '</div><div >Rating: 4</div>');
+		aa = L.marker([-7.7679534, 110.3856096]).bindPopup('<div><a>Kedai Kopi Rumah Budhe</a>' +
+    '</div><div >Rating: 4</div>');
+		ab = L.marker([-7.7813873, 110.3901002]).bindPopup('<div><a>Hayati</a>' +
+    '</div><div >Rating: 4</div>');
+		ac = L.marker([-7.7843528, 110.33718663]).bindPopup('<div><a>Simetri</a>' +
+    '</div><div >Rating: 4</div>');
+		ad = L.marker([-7.77550805, 110.7843528]).bindPopup('<div><a>Stereos Coffee</a>' +
+    '</div><div >Rating: 4.5</div>');
+		ae = L.marker([-7.7814061, 110.3614935]).bindPopup('<div><a>Milk By Artemy</a>' +
+    '</div><div >Rating: 5</div>');
+		af = L.marker([-7.76909, 110.39014]).bindPopup('<div><a>Kronology</a>' +
+    '</div><div >Rating: 5</div>');
+		ag = L.marker([-7.75439, 110.3825]).bindPopup('<div><a>Susu Murni Pak Jangkung</a>' +
+    '</div><div >Rating: 5</div>');
+		ah = L.marker([-7.75856, 110.36889]).bindPopup('<div><a>Lokalti</a>' +
+    '</div><div >Rating: 5</div>');
+		ai = L.marker([-7.7572571, 110.3809404]).bindPopup('<div><a>Culturehead</a>' +
+    '</div><div >Rating: 4</div>');
+		aj = L.marker([-7.7814134, 110.362581]).bindPopup('<div><a>Blanco</a>' +
+    '</div><div >Rating: 4</div>');
+		ak = L.marker([-7.7585934, 110.3535206]).bindPopup('<div><a>Peacockoffie</a>' +
+    '</div><div >Rating: 45</div>');
+		
+	var lokasi = L.layerGroup([a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,t,s,u,v,w,x,y,z,aa,ab,ac,ae,af,ag,ah,ai,aj,ak]).addTo(map);
+	
+	//buffer
+	      var rad1km = L.circle([-7.770262, 110.377872], {
+          color: "red",
+          fillColor: "#f03",
+          fillOpacity: 0.5,
+          radius: 1000.0
+      });
+	  
+	       var rad2km = L.circle([-7.770262, 110.377872], {
+          color: "yellow",
+          fillColor: "#ffff66",
+          fillOpacity: 0.5,
+          radius: 2000.0
+      });
+	  
+	       var rad3km = L.circle([-7.770262, 110.377872], {
+          color: "blue",
+          fillColor: "#3399ff",
+          fillOpacity: 0.5,
+          radius: 3000.0
+      });
+	  
+	       var rad5km = L.circle([-7.770262, 110.377872], {
+          color: "purple",
+          fillColor: "#cc00ff",
+          fillOpacity: 0.5,
+          radius: 5000.0
+      });
+	
+	//map control
+	var baseMaps = {
+		"Open Street Map": OpenStreetMap_Mapnik,
+		"Citra Satelit": esri,
+		"Peta Carto": carto
+	};
+	
+	var overlayMaps = {
+		"Lokasi Cafe": lokasi,
+		"Radius 1km": rad1km,
+		"Radius 2km": rad2km,
+		"Radius 3km": rad3km,
+		"Radius 5km": rad5km,
+	};
+	
+	L.control.layers(baseMaps, overlayMaps).addTo(map);
+	L.Control.geocoder().addTo(map);
+	
+	
+	
+	
+	/*
+	var graphicScale = L.control.graphicScale({
+		fill: "fill",
+		doubleLine: "true",
+		showSubunits: "true"
+	}).addTo(map);
+	*/
+	
+	// ------------------------------------------------------------------
+	// ini latian hari 2 leaflet
+	
+	function cari(){
+		alert('tombol ditekan!');
+		map.locate({setView: true, maxZoom: 16});
+		function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+}
+
+	map.on('locationfound', onLocationFound);
+		
+	}
+	
+
+
+
+  </script>
+</body>
+</html>
